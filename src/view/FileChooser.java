@@ -5,6 +5,8 @@ import java.io.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import view.components.*;
+
 public class FileChooser extends JFileChooser {
     File choosenFile = null;
     int response = this.showOpenDialog(null);
@@ -28,7 +30,7 @@ public class FileChooser extends JFileChooser {
             // JOptionPane.showMessageDialog(new JFrame(), StaticTexts.noChoosingCSV,
             // "Lỗi",
             // JOptionPane.NO_OPTION);
-
+            new ErrorInputFrame();
             // FIXME: Required feature to add some kind of notification to tell user about
             // the .csv files
             // as the only acceptable file type. Note that JOptionPane makes program cannot
