@@ -5,7 +5,7 @@ import java.io.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import view.components.*;
+import view.Util.StaticTexts;
 
 public class FileChooser extends JFileChooser {
     File choosenFile = null;
@@ -27,14 +27,9 @@ public class FileChooser extends JFileChooser {
             File file = new File(this.getSelectedFile().getAbsolutePath());
             this.choosenFile = file;
         } else {
-            // JOptionPane.showMessageDialog(new JFrame(), StaticTexts.noChoosingCSV,
-            // "Lỗi",
-            // JOptionPane.NO_OPTION);
-            new ErrorInputFrame();
-            // FIXME: Required feature to add some kind of notification to tell user about
-            // the .csv files
-            // as the only acceptable file type. Note that JOptionPane makes program cannot
-            // stop.
+            JOptionPane.showMessageDialog(new JFrame(), StaticTexts.noChoosingCSV,
+                    "Lỗi",
+                    JOptionPane.NO_OPTION);
             this.choosenFile = null;
         }
     }

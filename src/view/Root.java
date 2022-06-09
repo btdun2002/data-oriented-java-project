@@ -22,7 +22,7 @@ public class Root extends JFrame implements ActionListener {
     public Root() {
         super();
         this.setTitle("Data");
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize((int) (ScreenRes.width() * 2 / 3), (int) (ScreenRes.height() * 2 / 3));
         this.setLocationRelativeTo(null);
         this.setLayout(new GridBagLayout());
