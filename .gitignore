@@ -1,4 +1,4 @@
 # The bin folder is ignored to prevent issues associated with different 
 # JDK verion.
-.bin/
+bin/
 .vscode/
