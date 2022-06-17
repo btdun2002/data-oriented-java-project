@@ -1,8 +1,12 @@
 {
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "/mnt/windows-d/ComSci/Langs_libs_fwks/Java/Hust_advanced_Java/Final_grade_assignment/lib/tablesaw-core-0.43.1.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "lib/tablesaw-core-0.43.1.jar"
+        ]
+    }
 }
