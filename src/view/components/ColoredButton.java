@@ -21,7 +21,7 @@ public class ColoredButton extends JButton implements MouseListener, ActionListe
         this.setBorder(null);
         this.setForeground(Palette.WHITE);
         this.setBackground(Palette.HUST_RED);
-        this.setPreferredSize(new Dimension((int) (ScreenRes.width() * 3 / 17), (int) (ScreenRes.height() * 1 / 17)));
+        this.setPreferredSize(new Dimension((int) (ScreenRes.WIDTH * 3 / 17), (int) (ScreenRes.HEIGHT * 1 / 17)));
         this.addActionListener(this);
         this.addMouseListener(this);
     }
@@ -57,6 +57,6 @@ public class ColoredButton extends JButton implements MouseListener, ActionListe
         if (e.getSource() == this) {
             System.out.println("Colored Button Pressed");
         }
-        
+
     }
 }

@@ -1,3 +1,4 @@
+// This class is used to get Color instance.
 package view.Util;
 
 import java.awt.*;
