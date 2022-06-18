@@ -18,7 +18,8 @@ public class DataExtract extends JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize((int) (ScreenRes.WIDTH * 2 / 3), (int) (ScreenRes.HEIGHT * 2 / 3));
         this.setLocationRelativeTo(null);
-        this.setLayout(new GridBagLayout());
+        GridBagLayout gbl = new GridBagLayout();
+        this.setLayout(gbl);
         this.setResizable(false);
 
         // Create dropdown box to select country. Get the column containing all
@@ -32,17 +33,38 @@ public class DataExtract extends JFrame {
         countries = entites.toArray(countries);
         // With the created array, use it as elememnts in JComboBox.
         JComboBox<String> countrySelect = new JComboBox<>(countries);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        this.add(countrySelect);
 
-        // Temporary panel to put components.
-        JPanel tempPanel = new JPanel();
-        tempPanel.setBackground(Palette.HUST_RED);
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        tempPanel.setPreferredSize(new Dimension((int) (ScreenRes.WIDTH * (1 / 6)), (int) (ScreenRes.HEIGHT * 2 / 3)));
-        this.add(tempPanel);
+        // Building essential panels
+        JPanel countrySelectPanel = new JPanel();
+        countrySelectPanel.setLayout(new BorderLayout());
+        countrySelectPanel.add(countrySelect);
+
+        JPanel whitePanel = new JPanel();
+        whitePanel.setBackground(Color.WHITE);
+
+        JPanel redPanel = new JPanel();
+        redPanel.setBackground(Color.RED);
+
+        // Set up the layout for the JFrame
+        AddPanel(countrySelectPanel, 0, 0, 1, 1, 0.0, 0.0);
+        AddPanel(whitePanel, 0, 1, 1, 1, 0.0, 0.0);
+        AddPanel(redPanel, 1, 0, 2, 2, 0.0, 0.0);
+
+        // Tuning the layout for the JFrame
+        gbl.columnWeights = new double[] { 0.33, 0.33, 0.66 };
+        gbl.rowWeights = new double[] { 0.01, 0.99, 1 };
+    }
+
+    public void AddPanel(JPanel panel, int gridx, int gridy, int gridwidth, int gridheight, double weightx,
+            double weighty) {
+        gbc.gridx = gridx;
+        gbc.gridy = gridy;
+        gbc.gridwidth = gridwidth;
+        gbc.gridheight = gridheight;
+        gbc.weightx = weightx;
+        gbc.weighty = weighty;
+        gbc.fill = GridBagConstraints.BOTH;
+        this.add(panel, gbc);
     }
 
     public void initialize() {
