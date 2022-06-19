@@ -58,32 +58,30 @@ public class DataExtract extends JFrame {
         JPanel countrySelectPanel = new JPanel();
         countrySelectPanel.setLayout(new BorderLayout());
         countrySelectPanel.add(countrySelect);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.weightx = 0.125;
-        gbc.weighty = 0.01;
-        gbc.fill = GridBagConstraints.BOTH;
-        this.add(countrySelectPanel, gbc);
+        countrySelectPanel.setBackground(Color.GREEN);
 
         JPanel whitePanel = new JPanel();
+        whitePanel.setLayout(new GridLayout(20, 1));
+        whitePanel.add(countrySelectPanel);
+        whitePanel.add(countrySelectPanel);
         whitePanel.setBackground(Color.WHITE);
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.weightx = 0.125;
-        gbc.weighty = 0.99;
-        gbc.fill = GridBagConstraints.BOTH;
-        this.add(whitePanel, gbc);
 
         JPanel redPanel = new JPanel();
         redPanel.setBackground(Color.RED);
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.weightx = 0.25;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        this.add(whitePanel, gbc);
+
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
-        gbc.gridheight = 2;
+        gbc.gridheight = 1;
         gbc.weightx = 0.75;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
