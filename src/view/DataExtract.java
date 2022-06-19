@@ -73,7 +73,7 @@ public class DataExtract extends JFrame {
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        gbc.weightx = 0.25;
+        gbc.weightx = 0.125;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         this.add(whitePanel, gbc);
