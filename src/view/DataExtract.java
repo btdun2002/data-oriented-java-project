@@ -33,34 +33,14 @@ public class DataExtract extends JFrame {
         // With the created array, use it as elememnts in JComboBox.
         JComboBox<String> countrySelect = new JComboBox<>(countries);
 
-        // JPanel whitePanel = new JPanel();
-        // whitePanel.setBackground(Palette.WHITE);
-        // gbc.fill = GridBagConstraints.BOTH;
-        // gbc.gridx = 0;
-        // gbc.gridy = 0;
-        // gbc.weightx = 0.25;
-        // gbc.weighty = 1;
-        // gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        // whitePanel.add(countrySelect);
-        // this.add(whitePanel, gbc);
-
-        // // Temporary panel to put components.
-        // JPanel tempPanel = new JPanel();
-        // tempPanel.setBackground(Palette.HUST_RED);
-        // gbc.fill = GridBagConstraints.BOTH;
-        // gbc.gridx = 1;
-        // gbc.gridy = 0;
-        // gbc.weightx = 0.75;
-        // gbc.weighty = 1;
-        // this.add(tempPanel, gbc);
-
-        // Building essential panels
+        // The container to store the JComboBox
         JPanel countrySelectPanel = new JPanel();
         countrySelectPanel.setLayout(new BorderLayout());
         countrySelectPanel.setPreferredSize(countrySelect.getPreferredSize());
         countrySelectPanel.add(countrySelect);
         countrySelectPanel.setBackground(Color.GREEN);
 
+        // The white JPanel on the left hand side of the screen.
         JPanel whitePanel = new JPanel();
         whitePanel.setLayout(new GridLayout(20, 1));
         whitePanel.add(countrySelectPanel);
@@ -70,11 +50,14 @@ public class DataExtract extends JFrame {
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
+        // Note that the side panel should be just enough large to store the JComboBox,
+        // therefore it should occupies no extra space.
         gbc.weightx = 0;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.VERTICAL;
         this.add(whitePanel, gbc);
 
+        // The graph, located in the right hand side.
         JPanel redPanel = new JPanel();
         redPanel.setBackground(Color.RED);
         gbc.gridx = 1;
