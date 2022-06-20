@@ -57,34 +57,33 @@ public class DataExtract extends JFrame {
         // Building essential panels
         JPanel countrySelectPanel = new JPanel();
         countrySelectPanel.setLayout(new BorderLayout());
+        countrySelectPanel.setPreferredSize(countrySelect.getPreferredSize());
         countrySelectPanel.add(countrySelect);
         countrySelectPanel.setBackground(Color.GREEN);
 
         JPanel whitePanel = new JPanel();
         whitePanel.setLayout(new GridLayout(20, 1));
         whitePanel.add(countrySelectPanel);
-        whitePanel.add(countrySelectPanel);
         whitePanel.setBackground(Color.WHITE);
-
-        JPanel redPanel = new JPanel();
-        redPanel.setBackground(Color.RED);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        gbc.weightx = 0.125;
+        gbc.weightx = 0;
         gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.BOTH;
+        gbc.fill = GridBagConstraints.VERTICAL;
         this.add(whitePanel, gbc);
 
+        JPanel redPanel = new JPanel();
+        redPanel.setBackground(Color.RED);
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        gbc.weightx = 0.75;
+        gbc.weightx = 1;
         gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.BOTH;
+        gbc.fill = GridBagConstraints.VERTICAL;
         this.add(redPanel, gbc);
     }
 
