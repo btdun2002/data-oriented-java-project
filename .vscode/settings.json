@@ -6,7 +6,8 @@
             "lib/**/*.jar"
         ],
         "exclude": [
-            "lib/tablesaw-core-0.43.1.jar"
+            "lib/tablesaw-core-0.43.1.jar",
+            "lib/tablesaw-jsplot-0.43.1.jar"
         ]
     }
 }
