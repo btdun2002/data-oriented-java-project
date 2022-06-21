@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import java.util.List;
 
@@ -9,8 +10,10 @@ import javax.swing.*;
 import tech.tablesaw.columns.*;
 import view.Util.*;
 
-public class DataExtract extends JFrame {
+public class DataExtract extends JFrame implements ActionListener {
     private GridBagConstraints gbc = new GridBagConstraints();
+    private JLabel selectedCountry = new JLabel("Chọn quốc gia: ");
+    private JComboBox<String> countrySelect;
 
     public DataExtract(File file) {
         super();
@@ -31,7 +34,8 @@ public class DataExtract extends JFrame {
         String countries[] = new String[entites.size()];
         countries = entites.toArray(countries);
         // With the created array, use it as elememnts in JComboBox.
-        JComboBox<String> countrySelect = new JComboBox<>(countries);
+        countrySelect = new JComboBox<>(countries);
+        countrySelect.addActionListener(this);
 
         // The container to store the JComboBox
         JPanel countrySelectPanel = new JPanel();
@@ -59,18 +63,27 @@ public class DataExtract extends JFrame {
 
         // The graph, located in the right hand side.
         JPanel redPanel = new JPanel();
-        redPanel.setBackground(Color.RED);
+        redPanel.setBackground(Color.WHITE);
+        redPanel.add(selectedCountry);
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.weightx = 1;
         gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.fill = GridBagConstraints.BOTH;
         this.add(redPanel, gbc);
     }
 
     public void initialize() {
         this.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == countrySelect) {
+            String selected = countrySelect.getSelectedItem().toString();
+            selectedCountry.setText("Đang chọn: " + selected);
+        }
     }
 }
