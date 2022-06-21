@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.*;
 
 import tech.tablesaw.columns.*;
+import test.TimeSeriesChartExample;
 import view.Util.*;
 
 public class DataExtract extends JFrame implements ActionListener {
@@ -64,7 +65,8 @@ public class DataExtract extends JFrame implements ActionListener {
         // The graph, located in the right hand side.
         JPanel redPanel = new JPanel();
         redPanel.setBackground(Color.WHITE);
-        redPanel.add(selectedCountry);
+
+        // redPanel.add(selectedCountry);
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
@@ -72,7 +74,11 @@ public class DataExtract extends JFrame implements ActionListener {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        this.add(redPanel, gbc);
+        // this.add(redPanel, gbc);
+        // NOTE: DEMO, DELETE LATER.
+        TimeSeriesChartExample example = new TimeSeriesChartExample("Demo");
+        this.add(example, gbc);
+        // ###########################################
     }
 
     public void initialize() {
