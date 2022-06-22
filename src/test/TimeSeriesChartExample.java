@@ -3,10 +3,7 @@ package test;
 import java.awt.Color;
 
 import java.awt.*;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -43,6 +40,8 @@ public class TimeSeriesChartExample extends JPanel {
         ChartPanel panel = new ChartPanel(chart);
         this.setBackground(Color.GREEN);
         gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
         this.add(panel, gbc);
     }
 
@@ -86,13 +85,5 @@ public class TimeSeriesChartExample extends JPanel {
         dataset.addSeries(series2);
 
         return dataset;
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            TimeSeriesChartExample example = new TimeSeriesChartExample("Time Series Chart");
-            example.setSize(800, 400);
-            example.setVisible(true);
-        });
     }
 }
