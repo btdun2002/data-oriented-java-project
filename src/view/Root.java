@@ -3,6 +3,8 @@ package view;
 
 import javax.swing.*;
 
+import tech.tablesaw.api.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -23,7 +25,7 @@ public class Root extends JFrame implements ActionListener {
         super();
         this.setTitle("Data");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize((int) (ScreenRes.width() * 2 / 3), (int) (ScreenRes.height() * 2 / 3));
+        this.setSize((int) (ScreenRes.WIDTH * 2 / 3), (int) (ScreenRes.HEIGHT * 2 / 3));
         this.setLocationRelativeTo(null);
         this.setLayout(new GridBagLayout());
         this.setResizable(false);
@@ -63,12 +65,25 @@ public class Root extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // When press the choosing file button, call FileChooser instance.
         if (e.getSource() == fileChoosingBtn) {
             this.fc = new FileChooser();
-            choosenFile.setText(StaticTexts.fileDangChon + fc.getFile());
-            System.out.println(fc.getFile());
 
-        } else if (e.getSource() == dataBtn) {
+            // With the file got from FileChooser, get the path of the file.
+            String filePath = fc.getFile().toString();
+
+            // Set the text to acknowledge user about the current choosen file.
+            choosenFile.setText(StaticTexts.fileDangChon + filePath);
+            System.out.println(filePath);
+
+            // Initialize the dataframe by read the csv the user choosed. Remember that this
+            // df can be accessed from anywhere since it is a static variable in
+            // DataFrame.java.
+            DataFrame.df = Table.read().csv(filePath);
+        }
+        // With the data button, take the file and perform read and analyze operations
+        // with that.
+        else if (e.getSource() == dataBtn) {
             this.dataExtract = new DataExtract(this.fc.getFile());
             dataExtract.initialize();
         }

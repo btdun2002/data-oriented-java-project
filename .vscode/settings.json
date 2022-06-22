@@ -1,7 +1,13 @@
 {
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "lib/tablesaw-core-0.43.1.jar",
+            "lib/tablesaw-jsplot-0.43.1.jar"
+        ]
+    }
 }
