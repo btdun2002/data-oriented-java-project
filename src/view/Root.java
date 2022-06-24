@@ -3,6 +3,7 @@ package view;
 
 import javax.swing.*;
 
+import model.DataFrame;
 import tech.tablesaw.api.*;
 
 import java.awt.*;
@@ -18,8 +19,8 @@ public class Root extends JFrame implements ActionListener {
     JLabel choosenFile = new JLabel(StaticTexts.fileDangChon);
     ColoredButton dataBtn = new ColoredButton(StaticTexts.phanTich);
 
-    FileChooser fc = null;
-    DataExtract dataExtract = null;
+    FileChoosingScreen fc = null;
+    GraphScreen dataExtract = null;
 
     public Root() {
         super();
@@ -67,7 +68,7 @@ public class Root extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // When press the choosing file button, call FileChooser instance.
         if (e.getSource() == fileChoosingBtn) {
-            this.fc = new FileChooser();
+            this.fc = new FileChoosingScreen();
 
             // With the file got from FileChooser, get the path of the file.
             String filePath = fc.getFile().toString();
@@ -84,7 +85,7 @@ public class Root extends JFrame implements ActionListener {
         // With the data button, take the file and perform read and analyze operations
         // with that.
         else if (e.getSource() == dataBtn) {
-            this.dataExtract = new DataExtract(this.fc.getFile());
+            this.dataExtract = new GraphScreen(this.fc.getFile());
             dataExtract.initialize();
         }
     }
