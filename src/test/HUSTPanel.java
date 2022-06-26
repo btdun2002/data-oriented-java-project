@@ -2,7 +2,6 @@ package test;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class HUSTPanel extends JPanel {
     boolean imgState = true;
