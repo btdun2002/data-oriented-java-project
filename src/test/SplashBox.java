@@ -6,7 +6,7 @@ import javax.swing.*;
 
 import view.Util.*;
 
-public class SplashPanel extends JPanel {
+public class SplashBox extends Box {
     HUSTPanel hPanel = new HUSTPanel("assets/icons/H_red.png", "assets/icons/H_black.png",
             (int) (ScreenRes.WIDTH * 1 / 15), (int) (ScreenRes.HEIGHT * 1 / 15));
     HUSTPanel uPanel = new HUSTPanel("assets/icons/U_red.png", "assets/icons/U_black.png",
@@ -17,18 +17,24 @@ public class SplashPanel extends JPanel {
             (int) (ScreenRes.WIDTH * 1 / 15), (int) (ScreenRes.HEIGHT * 1 / 15));
     JPanel midPanel = new JPanel();
 
-    public SplashPanel() {
+    public SplashBox() {
+        super(BoxLayout.Y_AXIS);
+        JPanel tempPanel = new JPanel();
 
         Dimension expectedDimension = new Dimension((int) (ScreenRes.WIDTH * 3 / 10),
                 (int) (ScreenRes.HEIGHT * 3 / 10));
-        this.setPreferredSize(expectedDimension);
-        this.setMaximumSize(expectedDimension);
-        this.setMinimumSize(expectedDimension);
-        this.setLayout(new GridLayout(1, 4));
-        this.add(hPanel);
-        this.add(uPanel);
-        this.add(sPanel);
-        this.add(tPanel);
+        tempPanel.setPreferredSize(expectedDimension);
+        tempPanel.setMaximumSize(expectedDimension);
+        tempPanel.setMinimumSize(expectedDimension);
+        tempPanel.setLayout(new GridLayout(1, 4));
+        tempPanel.add(hPanel);
+        tempPanel.add(uPanel);
+        tempPanel.add(sPanel);
+        tempPanel.add(tPanel);
+
+        this.add(Box.createVerticalGlue());
+        this.add(tempPanel);
+        this.add(Box.createVerticalGlue());
 
         MyTask thread = new MyTask();
         thread.start();
@@ -73,15 +79,9 @@ public class SplashPanel extends JPanel {
 
     public static void main(String[] args) {
         JFrame SplashScreen = new JFrame();
-        SplashPanel tempPanel = new SplashPanel();
+        SplashBox tempBox = new SplashBox();
 
-        Box box = new Box(BoxLayout.Y_AXIS);
-
-        box.add(Box.createVerticalGlue());
-        box.add(tempPanel);
-        box.add(Box.createVerticalGlue());
-
-        SplashScreen.add(box);
+        SplashScreen.add(tempBox);
 
         SplashScreen.setTitle("Splash Screen");
         SplashScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -47,26 +47,4 @@ public class HUSTPanel extends JPanel {
         repaint();
 
     }
-
-    // public void mouseClicked(MouseEvent e) {
-
-    // }
-
-    // public void mouseEntered(MouseEvent e) {
-    // imgState = false;
-    // repaint();
-    // }
-
-    // public void mouseExited(MouseEvent e) {
-    // imgState = true;
-    // repaint();
-    // }
-
-    // public void mousePressed(MouseEvent e) {
-
-    // }
-
-    // public void mouseReleased(MouseEvent e) {
-
-    // }
 }
