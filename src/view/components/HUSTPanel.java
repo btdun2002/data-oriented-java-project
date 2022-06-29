@@ -1,4 +1,4 @@
-package test;
+package view.components;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +13,7 @@ public class HUSTPanel extends JPanel {
     int height;
 
     public HUSTPanel(String imgRDir, String imgBDir, int width, int height) {
+        // this.setForeground(new Color(0, 0, 0, 0));
         this.imgRDir = imgRDir;
         this.imgBDir = imgBDir;
         this.width = width;
@@ -21,7 +22,6 @@ public class HUSTPanel extends JPanel {
         this.imgB = getToolkit().getImage(imgBDir);
         this.imgR = (this.imgR).getScaledInstance(width, height, Image.SCALE_DEFAULT);
         this.imgB = (this.imgB).getScaledInstance(width, height, Image.SCALE_DEFAULT);
-        // this.addMouseListener(this);
         setVisible(true);
     }
 
@@ -45,6 +45,5 @@ public class HUSTPanel extends JPanel {
     public void turnBlack() {
         imgState = false;
         repaint();
-
     }
 }

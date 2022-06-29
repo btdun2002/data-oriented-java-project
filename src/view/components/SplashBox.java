@@ -1,4 +1,4 @@
-package test;
+package view.components;
 
 import java.awt.*;
 
@@ -8,39 +8,37 @@ import view.Util.*;
 
 public class SplashBox extends Box {
     HUSTPanel hPanel = new HUSTPanel("assets/icons/H_red.png", "assets/icons/H_black.png",
-            (int) (ScreenRes.WIDTH * 1 / 15), (int) (ScreenRes.HEIGHT * 1 / 15));
+            (int) (ScreenRes.WIDTH / 35), (int) (ScreenRes.HEIGHT / 35));
     HUSTPanel uPanel = new HUSTPanel("assets/icons/U_red.png", "assets/icons/U_black.png",
-            (int) (ScreenRes.WIDTH * 1 / 15), (int) (ScreenRes.HEIGHT * 1 / 15));
+            (int) (ScreenRes.WIDTH / 35), (int) (ScreenRes.HEIGHT / 35));
     HUSTPanel sPanel = new HUSTPanel("assets/icons/S_red.png", "assets/icons/S_black.png",
-            (int) (ScreenRes.WIDTH * 1 / 15), (int) (ScreenRes.HEIGHT * 1 / 15));
+            (int) (ScreenRes.WIDTH / 35), (int) (ScreenRes.HEIGHT / 35));
     HUSTPanel tPanel = new HUSTPanel("assets/icons/T_red.png", "assets/icons/T_black.png",
-            (int) (ScreenRes.WIDTH * 1 / 15), (int) (ScreenRes.HEIGHT * 1 / 15));
-    JPanel midPanel = new JPanel();
+            (int) (ScreenRes.WIDTH / 35), (int) (ScreenRes.HEIGHT / 35));
+    JPanel localPanel = new JPanel();
 
     public SplashBox() {
         super(BoxLayout.Y_AXIS);
-        JPanel tempPanel = new JPanel();
 
-        Dimension expectedDimension = new Dimension((int) (ScreenRes.WIDTH * 3 / 10),
-                (int) (ScreenRes.HEIGHT * 3 / 10));
-        tempPanel.setPreferredSize(expectedDimension);
-        tempPanel.setMaximumSize(expectedDimension);
-        tempPanel.setMinimumSize(expectedDimension);
-        tempPanel.setLayout(new GridLayout(1, 4));
-        tempPanel.add(hPanel);
-        tempPanel.add(uPanel);
-        tempPanel.add(sPanel);
-        tempPanel.add(tPanel);
+        Dimension expectedDimension = new Dimension((int) (ScreenRes.WIDTH / 8),
+                (int) (ScreenRes.HEIGHT / 8));
+        localPanel.setPreferredSize(expectedDimension);
+        localPanel.setMaximumSize(expectedDimension);
+        localPanel.setMinimumSize(expectedDimension);
+        localPanel.setLayout(new GridLayout(1, 4));
+        localPanel.add(hPanel, 0);
+        localPanel.add(uPanel, 1);
+        localPanel.add(sPanel, 2);
+        localPanel.add(tPanel, 3);
 
         this.add(Box.createVerticalGlue());
-        this.add(tempPanel);
+        this.add(localPanel);
         this.add(Box.createVerticalGlue());
 
         MyTask thread = new MyTask();
         thread.start();
 
         this.setVisible(true);
-
     }
 
     public class MyTask extends Thread {
@@ -51,18 +49,18 @@ public class SplashBox extends Box {
         }
 
         public void loop() {
-            delay(2000);
+            delay(1000);
             hPanel.turnBlack();
             uPanel.turnBlack();
             sPanel.turnBlack();
             tPanel.turnBlack();
-            delay(2000);
+            delay(100);
             hPanel.turnRed();
-            delay(200);
+            delay(100);
             uPanel.turnRed();
-            delay(200);
+            delay(100);
             sPanel.turnRed();
-            delay(200);
+            delay(100);
             tPanel.turnRed();
         }
 
