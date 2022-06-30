@@ -13,7 +13,10 @@ import view.Util.*;
 import view.components.*;
 
 public class Root extends JFrame implements ActionListener {
+    JPanel rootPanel = new JPanel();
     GridBagConstraints gbc = new GridBagConstraints();
+
+    SplashBox splashBox = new SplashBox();
     // Components added to the Frame.
     ColoredButton fileChoosingBtn = new ColoredButton(StaticTexts.chonFile);
     JLabel choosenFile = new JLabel(StaticTexts.fileDangChon);
@@ -28,46 +31,80 @@ public class Root extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize((int) (ScreenRes.WIDTH * 2 / 3), (int) (ScreenRes.HEIGHT * 2 / 3));
         this.setLocationRelativeTo(null);
-        this.setLayout(new GridBagLayout());
         this.setResizable(false);
+
+        // Building main Panel of Root Frame
+        rootPanel.setLayout(new GridBagLayout());
 
         // Setup and add the button to the frame.
         gbc.gridx = 0;
         gbc.gridy = 0;
         fileChoosingBtn.addActionListener(this);
-        this.add(fileChoosingBtn, gbc);
+        rootPanel.add(fileChoosingBtn, gbc);
 
         // Container used as a padding between button and text.
         JPanel padding = new JPanel();
         gbc.gridx = 0;
         gbc.gridy = 1;
-        this.add(padding, gbc);
+        rootPanel.add(padding, gbc);
 
         // Setup and add the text illustartes the current file being choosen.
         gbc.gridx = 0;
         gbc.gridy = 2;
-        this.add(choosenFile, gbc);
+        rootPanel.add(choosenFile, gbc);
 
         // Container used as a padding between button and text.
         gbc.gridx = 0;
         gbc.gridy = 3;
-        this.add(padding, gbc);
+        rootPanel.add(padding, gbc);
 
         // Setup and add the button to open the analyzed frame.
         gbc.gridx = 0;
         gbc.gridy = 4;
         dataBtn.addActionListener(this);
-        this.add(dataBtn, gbc);
+        rootPanel.add(dataBtn, gbc);
+
+        this.add(rootPanel);
+        this.add(splashBox);
+        toRootTask trthread = new toRootTask();
+        trthread.start();
     }
 
     public void initialize() {
         this.setVisible(true);
     }
 
+    public class toRootTask extends Thread {
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+            }
+            remove(splashBox);
+            add(rootPanel);
+            validate();
+            repaint();
+        }
+    }
+
+    public class toSplashTask extends Thread {
+        @Override
+        public void run() {
+            remove(rootPanel);
+            add(splashBox);
+            validate();
+            repaint();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         // When press the choosing file button, call FileChooser instance.
         if (e.getSource() == fileChoosingBtn) {
+            toSplashTask tsthread = new toSplashTask();
+            tsthread.start();
+
             this.fc = new FileChoosingScreen();
 
             // With the file got from FileChooser, get the path of the file.
@@ -81,6 +118,9 @@ public class Root extends JFrame implements ActionListener {
             // df can be accessed from anywhere since it is a static variable in
             // DataFrame.java.
             DataFrame.df = Table.read().csv(filePath);
+
+            toRootTask trthread = new toRootTask();
+            trthread.start();
         }
         // With the data button, take the file and perform read and analyze operations
         // with that.

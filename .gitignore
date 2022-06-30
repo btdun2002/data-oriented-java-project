@@ -1,5 +1,9 @@
 # The bin folder is ignored to prevent issues associated with different 
 # JDK verion.
 bin/
+bin/controller/
+bin/model/
+bin/test/
+bin/view/
 .vscode/
 assets/data/xu-ly-data.ipynb
