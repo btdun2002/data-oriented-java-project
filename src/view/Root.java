@@ -11,6 +11,7 @@ import java.awt.event.*;
 
 import view.Util.*;
 import view.components.*;
+import view.components.loadingIcon.SplashBox;
 
 public class Root extends JFrame implements ActionListener {
     JPanel rootPanel = new JPanel();

@@ -1,4 +1,4 @@
-package view.components;
+package view.components.loadingIcon;
 
 import javax.swing.*;
 import java.awt.*;
