@@ -19,7 +19,7 @@ class CheckComboPanel extends JPanel implements ActionListener {
         for (int j = 0; j < ids.length; j++)
             stores[j] = new CustomedBox(ids[j], values[j]);
 
-        JComboBox combo = new JComboBox(stores);
+        JComboBox<CustomedBox> combo = new JComboBox<CustomedBox>(stores);
         combo.setRenderer(new CheckComboRenderer());
         combo.addActionListener(this);
 
@@ -32,7 +32,7 @@ class CheckComboPanel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        JComboBox combo = (JComboBox) e.getSource();
+        JComboBox<?> combo = (JComboBox<?>) e.getSource();
         CustomedBox store = (CustomedBox) combo.getSelectedItem();
         CheckComboRenderer ccr = (CheckComboRenderer) combo.getRenderer();
         ccr.checkBox.setSelected((store.state = !store.state));
@@ -53,7 +53,7 @@ class CheckComboPanel extends JPanel implements ActionListener {
     }
 }
 
-class CheckComboRenderer implements ListCellRenderer {
+class CheckComboRenderer implements ListCellRenderer<Object> {
     JCheckBox checkBox;
 
     public CheckComboRenderer() {
@@ -61,7 +61,7 @@ class CheckComboRenderer implements ListCellRenderer {
     }
 
     @Override
-    public Component getListCellRendererComponent(JList list, Object value,
+    public Component getListCellRendererComponent(JList<?> list, Object value,
             int index, boolean isSelected, boolean cellHasFocus) {
         CustomedBox tempBox = (CustomedBox) value;
         checkBox.setText(tempBox.id);
