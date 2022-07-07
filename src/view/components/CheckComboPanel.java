@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class CheckComboPanel extends JPanel implements ActionListener {
+public class CheckComboPanel extends JPanel implements ActionListener {
     String[] ids;
     Boolean[] values;
     CustomedBox[] stores;
@@ -31,19 +31,20 @@ class CheckComboPanel extends JPanel implements ActionListener {
         this.add(button);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        JComboBox<?> combo = (JComboBox<?>) e.getSource();
-        CustomedBox store = (CustomedBox) combo.getSelectedItem();
-        CheckComboRenderer ccr = (CheckComboRenderer) combo.getRenderer();
-        ccr.checkBox.setSelected((store.state = !store.state));
-    }
-
     public ArrayList<String> getSelected() {
         ArrayList<String> arr = new ArrayList<String>();
         for (int j = 0; j < ids.length; j++)
             if (stores[j].state)
                 arr.add(stores[j].id);
         return arr;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JComboBox<?> combo = (JComboBox<?>) e.getSource();
+        CustomedBox store = (CustomedBox) combo.getSelectedItem();
+        CheckComboRenderer ccr = (CheckComboRenderer) combo.getRenderer();
+        ccr.checkBox.setSelected((store.state = !store.state));
     }
 
     public class ButtonListener implements ActionListener {
