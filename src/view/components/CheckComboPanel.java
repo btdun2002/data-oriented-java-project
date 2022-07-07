@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CheckComboPanel extends JPanel implements ActionListener {
-    String[] ids;
-    Boolean[] values;
-    CustomedBox[] stores;
+    private String[] ids;
+    private Boolean[] values;
+    private CustomedBox[] stores;
+
+    public ArrayList<String> ARR;
 
     public CheckComboPanel(String[] ids) {
         this.ids = ids;
@@ -31,12 +33,11 @@ public class CheckComboPanel extends JPanel implements ActionListener {
         this.add(button);
     }
 
-    public ArrayList<String> getSelected() {
-        ArrayList<String> arr = new ArrayList<String>();
+    public void updateSelected() {
+        ARR = new ArrayList<String>();
         for (int j = 0; j < ids.length; j++)
             if (stores[j].state)
-                arr.add(stores[j].id);
-        return arr;
+                ARR.add(stores[j].id);
     }
 
     @Override
@@ -49,33 +50,34 @@ public class CheckComboPanel extends JPanel implements ActionListener {
 
     public class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            System.out.println(getSelected());
+            updateSelected();
+            System.out.println(ARR);
         }
     }
 }
 
 class CheckComboRenderer implements ListCellRenderer<Object> {
-    JCheckBox checkBox;
+    public JCheckBox checkBox;
 
     public CheckComboRenderer() {
         checkBox = new JCheckBox();
     }
 
     @Override
-    public Component getListCellRendererComponent(JList<?> list, Object value,
-            int index, boolean isSelected, boolean cellHasFocus) {
+    public JCheckBox getListCellRendererComponent(JList<?> list, Object value,
+            int index, boolean isPointed, boolean cellHasFocus) {
         CustomedBox tempBox = (CustomedBox) value;
         checkBox.setText(tempBox.id);
         checkBox.setSelected(((Boolean) tempBox.state).booleanValue());
-        checkBox.setBackground(isSelected ? Color.red : Color.white);
-        checkBox.setForeground(isSelected ? Color.white : Color.black);
+        checkBox.setBackground(isPointed ? Color.red : Color.white);
+        checkBox.setForeground(isPointed ? Color.white : Color.black);
         return checkBox;
     }
 }
 
 class CustomedBox {
-    String id;
-    Boolean state;
+    public String id;
+    public Boolean state;
 
     public CustomedBox(String id, Boolean state) {
         this.id = id;
