@@ -2,6 +2,8 @@ package view.components.graphFilter;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import model.*;
@@ -19,6 +21,8 @@ public class TimeSeriesFilter2 extends JPanel implements ActionListener {
     private SeriesTypeChooser graphCategories;
     private ColoredButton filterBtn = new ColoredButton("Áp dụng");
     private ColoredButton clearFilterBtn = new ColoredButton("Xóa bộ lọc");
+    private ButtonGroup bg = new ButtonGroup();
+    ArrayList<CustomRadioButton> newOption = new ArrayList<CustomRadioButton>(categories.length);
 
     public TimeSeriesFilter2() {
         super();
@@ -32,16 +36,15 @@ public class TimeSeriesFilter2 extends JPanel implements ActionListener {
 
         // Create JRadioButton serves as filter for the type of data the graph will
         // represent.
-        ButtonGroup bg = new ButtonGroup();
         for (int i = 0; i < categories.length; i++) {
-            CustomRadioButton newOption = new CustomRadioButton(categories[i]);
-            bg.add(newOption);
-            this.add(newOption);
+            newOption.add(new CustomRadioButton(categories[i]));
+            bg.add(newOption.get(i));
+            this.add(newOption.get(i));
         }
-        graphCategories = new SeriesTypeChooser(categories);
+        // graphCategories = new SeriesTypeChooser(categories);
         // this.add(graphCategories);
 
-        clearFilterBtn.addActionListener(this);
+        clearFilterBtn.addActionListener(new clearListener());
         this.add(clearFilterBtn);
 
         filterBtn.addActionListener(this);
@@ -53,6 +56,18 @@ public class TimeSeriesFilter2 extends JPanel implements ActionListener {
         if (e.getSource() == filterBtn) {
             countrySelect.updateSelected();
             System.out.println(countrySelect.selectedItems);
+            for (int i = 0; i < categories.length; i++) {
+                if (newOption.get(i).isSelected()) {
+                    System.out.println(newOption.get(i).getText());
+                }
+            }
+        }
+    }
+
+    public class clearListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            bg.clearSelection();
         }
     }
 }
