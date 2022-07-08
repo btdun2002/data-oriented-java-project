@@ -25,12 +25,8 @@ public class CheckComboPanel extends JPanel implements ActionListener {
         combo.setRenderer(new CheckComboRenderer());
         combo.addActionListener(this);
 
-        JButton button = new JButton("Click");
-        button.addActionListener(new ButtonListener());
-
         this.setLayout(new GridLayout(2, 1));
         this.add(combo);
-        this.add(button);
     }
 
     public void updateSelected() {
@@ -46,13 +42,6 @@ public class CheckComboPanel extends JPanel implements ActionListener {
         CustomedBox store = (CustomedBox) combo.getSelectedItem();
         CheckComboRenderer ccr = (CheckComboRenderer) combo.getRenderer();
         ccr.checkBox.setSelected((store.state = !store.state));
-    }
-
-    public class ButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            updateSelected();
-            System.out.println(ARR);
-        }
     }
 }
 

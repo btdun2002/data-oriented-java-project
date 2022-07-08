@@ -58,8 +58,10 @@ public class TimeSeriesFilterHolder extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == filterBtn) {
-            TimeSeriesFilter filterScreen = new TimeSeriesFilter();
-            filterScreen.initialize();
+            // TimeSeriesFilter filterScreen = new TimeSeriesFilter();
+            // filterScreen.initialize();
+            countrySelect.updateSelected();
+            System.out.println(countrySelect.ARR);
         }
     }
 }
