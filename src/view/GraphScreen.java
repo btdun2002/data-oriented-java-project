@@ -24,7 +24,7 @@ public class GraphScreen extends JFrame implements ActionListener {
         this.setResizable(false);
 
         // The white JPanel on the left hand-side of the screen.
-        TimeSeriesFilter filterPanel = new TimeSeriesFilter();
+        TimeSeriesFilter2 filterPanel = new TimeSeriesFilter2();
 
         gbc.gridx = 0;
         gbc.gridy = 0;
