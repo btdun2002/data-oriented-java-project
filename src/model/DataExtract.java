@@ -2,6 +2,8 @@
 // desired collections of values for graph's axis.
 package model;
 
+import java.util.*;
+
 import org.jfree.data.time.*;
 
 import controller.DateGenerator;
@@ -42,10 +44,10 @@ public class DataExtract {
         return countries;
     }
 
-    // The extractCategory() method retruns list of doubles as data for different
+    // The extractFigures() method retruns list of doubles as data for different
     // categories
     // i.e. different columns.
-    public static double[] extractCategory(String country, String category) {
+    public static double[] extractFigures(String country, String category) {
         // Parse the sub-table that only contains entries of the specified country.
         Table choosenCountry = DataFrame.df.where(DataFrame.df.stringColumn("location").equalsIgnoreCase(country));
 
@@ -58,5 +60,18 @@ public class DataExtract {
         double data[] = categoryColumn.asDoubleArray();
 
         return data;
+    }
+
+    // The extractCategories() method returns list of String of all column name that
+    // can be used to draw specific graph. This means it exclude columns that
+    // required for all graph such as `location` or `date`.
+    public static String[] extractCategories() {
+        // Get all columns and convert it from List to String array.
+        List<String> tempList = DataFrame.df.columnNames();
+        String[] columnNames = new String[tempList.size()];
+        tempList.toArray(columnNames);
+
+        String[] categories = Arrays.copyOfRange(columnNames, 4, 13);
+        return categories;
     }
 }

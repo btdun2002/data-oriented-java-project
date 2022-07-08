@@ -24,7 +24,7 @@ public class GraphScreen extends JFrame implements ActionListener {
         this.setResizable(false);
 
         // The white JPanel on the left hand-side of the screen.
-        TimeSeriesFilterHolder leftPanel = new TimeSeriesFilterHolder();
+        TimeSeriesFilter filterPanel = new TimeSeriesFilter();
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -35,7 +35,7 @@ public class GraphScreen extends JFrame implements ActionListener {
         gbc.weightx = 0;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.VERTICAL;
-        this.add(leftPanel, gbc);
+        this.add(filterPanel, gbc);
 
         // The graph on the right-hand side of the screen.
         gbc.gridx = 1;

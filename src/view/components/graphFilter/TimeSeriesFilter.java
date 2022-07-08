@@ -5,16 +5,18 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import model.*;
-import view.TimeSeriesFilter;
 import view.Util.Palette;
 import view.components.*;
+import view.components.buttons.CheckComboPanel;
+import view.components.buttons.ColoredButton;
 
-public class TimeSeriesFilterHolder extends JPanel implements ActionListener {
+public class TimeSeriesFilter extends JPanel implements ActionListener {
     private GridBagConstraints gbc = new GridBagConstraints();
     private CheckComboPanel countrySelect;
-    private ColoredButton filterBtn = new ColoredButton("Bộ lọc");
+    private SeriesTypeChooser graphCategories;
+    private ColoredButton filterBtn = new ColoredButton("Áp dụng");
 
-    public TimeSeriesFilterHolder() {
+    public TimeSeriesFilter() {
         super();
         this.setLayout(new GridBagLayout());
         this.setBackground(Palette.WHITE);
@@ -33,8 +35,8 @@ public class TimeSeriesFilterHolder extends JPanel implements ActionListener {
         gbc.fill = GridBagConstraints.BOTH;
         this.add(countrySelect, gbc);
 
-        JPanel greenPanel = new JPanel();
-        greenPanel.setBackground(Color.GREEN);
+        String[] categories = DataExtract.extractCategories();
+        graphCategories = new SeriesTypeChooser(categories);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -43,7 +45,7 @@ public class TimeSeriesFilterHolder extends JPanel implements ActionListener {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        this.add(greenPanel, gbc);
+        this.add(graphCategories, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -58,10 +60,8 @@ public class TimeSeriesFilterHolder extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == filterBtn) {
-            // TimeSeriesFilter filterScreen = new TimeSeriesFilter();
-            // filterScreen.initialize();
             countrySelect.updateSelected();
-            System.out.println(countrySelect.ARR);
+            System.out.println(countrySelect.selectedItems);
         }
     }
 }

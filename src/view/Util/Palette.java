@@ -6,4 +6,5 @@ import java.awt.*;
 public class Palette {
     public static Color HUST_RED = new Color(205, 22, 39);
     public static Color WHITE = new Color(255, 255, 255);
+    public static Color BLACK = new Color(0, 0, 0);
 }

@@ -1,3 +1,4 @@
+// Consider delete this later.
 package view;
 
 import java.awt.*;
@@ -6,12 +7,13 @@ import javax.swing.*;
 import model.DataExtract;
 import view.Util.ScreenRes;
 import view.components.*;
+import view.components.buttons.CheckComboPanel;
 
-public class TimeSeriesFilter extends JFrame {
+public class TimeSeriesFilterDel extends JFrame {
     private GridBagConstraints gbc = new GridBagConstraints();
     private CheckComboPanel countrySelect;
 
-    public TimeSeriesFilter() {
+    public TimeSeriesFilterDel() {
         super();
         this.setTitle("Time series filter");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

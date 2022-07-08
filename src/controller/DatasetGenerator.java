@@ -15,7 +15,7 @@ public class DatasetGenerator extends TimeSeriesCollection {
 
         // Create two arrays containing dates and data for the graph.
         Day dates[] = DataExtract.extractDay(countryName);
-        double data[] = DataExtract.extractCategory(countryName, "total_cases");
+        double data[] = DataExtract.extractFigures(countryName, "total_cases");
 
         // Since the number of elements of two arrays is equals, run a for loop and add
         // these elements as data for the plot.

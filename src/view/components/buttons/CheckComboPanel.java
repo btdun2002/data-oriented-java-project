@@ -1,4 +1,4 @@
-package view.components;
+package view.components.buttons;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CheckComboPanel extends JPanel implements ActionListener {
+    private GridBagConstraints gbc = new GridBagConstraints();
     private String[] ids;
     private Boolean[] values;
     private CustomedBox[] stores;
 
-    public ArrayList<String> ARR;
+    public ArrayList<String> selectedItems;
 
     public CheckComboPanel(String[] ids) {
         this.ids = ids;
+        this.setLayout(new GridBagLayout());
         values = new Boolean[ids.length];
         Arrays.fill(values, Boolean.FALSE);
         stores = new CustomedBox[ids.length];
@@ -25,15 +27,21 @@ public class CheckComboPanel extends JPanel implements ActionListener {
         combo.setRenderer(new CheckComboRenderer());
         combo.addActionListener(this);
 
-        this.setLayout(new GridLayout(2, 1));
-        this.add(combo);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        this.add(combo, gbc);
     }
 
     public void updateSelected() {
-        ARR = new ArrayList<String>();
+        selectedItems = new ArrayList<String>();
         for (int j = 0; j < ids.length; j++)
             if (stores[j].state)
-                ARR.add(stores[j].id);
+                selectedItems.add(stores[j].id);
     }
 
     @Override
