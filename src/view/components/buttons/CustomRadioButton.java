@@ -2,15 +2,19 @@
 package view.components.buttons;
 
 import javax.swing.*;
+import javax.swing.border.*;
 
 import view.Util.Palette;
 
 import java.awt.event.*;
 
 public class CustomRadioButton extends JRadioButton implements MouseListener, ActionListener {
+    private Border buttonBorder = BorderFactory.createLineBorder(Palette.HUST_RED);
+
     public CustomRadioButton(String buttonName) {
         super(buttonName);
         this.setBackground(Palette.WHITE);
+        this.setBorder(buttonBorder);
         this.addActionListener(this);
         this.addMouseListener(this);
     }
@@ -37,13 +41,11 @@ public class CustomRadioButton extends JRadioButton implements MouseListener, Ac
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        this.setBackground(Palette.HUST_RED);
-        this.setForeground(Palette.WHITE);
+        this.setBorderPainted(true);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        this.setBackground(Palette.WHITE);
-        this.setForeground(Palette.BLACK);
+        this.setBorderPainted(false);
     }
 }
