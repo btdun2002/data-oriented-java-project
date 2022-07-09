@@ -1,9 +1,9 @@
-// The filter side bar to customize the graph. Note that the layout and UI it 
-// used should be changed later.
 package view.components.graphFilter;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import model.*;
@@ -19,6 +19,8 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
     private CheckComboPanel countrySelect;
     private ColoredButton filterBtn = new ColoredButton("Áp dụng");
     private ColoredButton clearFilterBtn = new ColoredButton("Xóa bộ lọc");
+    private ButtonGroup bg = new ButtonGroup();
+    ArrayList<CustomRadioButton> graphOptions = new ArrayList<CustomRadioButton>(categories.length);
 
     public TimeSeriesFilter() {
         super();
@@ -32,12 +34,13 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
 
         // Create JRadioButton serves as filter for the type of data the graph will
         // represent.
-        ButtonGroup bg = new ButtonGroup();
         for (int i = 0; i < categories.length; i++) {
-            CustomRadioButton newOption = new CustomRadioButton(categories[i]);
-            bg.add(newOption);
-            this.add(newOption);
+            graphOptions.add(new CustomRadioButton(categories[i]));
+            bg.add(graphOptions.get(i));
+            this.add(graphOptions.get(i));
         }
+        // graphCategories = new SeriesTypeChooser(categories);
+        // this.add(graphCategories);
 
         clearFilterBtn.addActionListener(this);
         this.add(clearFilterBtn);
@@ -51,6 +54,15 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
         if (e.getSource() == filterBtn) {
             countrySelect.updateSelected();
             System.out.println(countrySelect.selectedItems);
+            for (int i = 0; i < categories.length; i++) {
+                if (graphOptions.get(i).isSelected()) {
+                    System.out.println(graphOptions.get(i).getText());
+                }
+            }
+        }
+
+        if (e.getSource() == clearFilterBtn) {
+            bg.clearSelection();
         }
     }
 }

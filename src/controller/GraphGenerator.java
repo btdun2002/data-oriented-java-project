@@ -9,7 +9,6 @@ import javax.swing.*;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.*;
 
 import java.awt.*;
 

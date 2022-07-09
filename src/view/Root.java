@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 import view.Util.*;
-import view.components.*;
 import view.components.buttons.ColoredButton;
 import view.components.loadingIcon.SplashBox;
 

@@ -22,8 +22,6 @@ public class CustomRadioButton extends JRadioButton implements MouseListener, Ac
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.isSelected()) {
-            this.setBackground(Palette.HUST_RED);
-            this.setForeground(Palette.WHITE);
         }
     }
 

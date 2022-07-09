@@ -1,3 +1,5 @@
+// The filter side bar to customize the graph. Note that the layout and UI it 
+// used should be changed later.
 package test;
 
 import java.awt.*;
@@ -6,55 +8,42 @@ import javax.swing.*;
 
 import model.*;
 import view.Util.Palette;
-import view.components.*;
-import view.components.buttons.CheckComboPanel;
-import view.components.buttons.ColoredButton;
+import view.components.buttons.*;
 
 public class TimeSeriesFilterOld extends JPanel implements ActionListener {
-    private GridBagConstraints gbc = new GridBagConstraints();
+    // Extract data/informations needed for the panel.
+    private String[] countries = DataExtract.extractCountry();
+    private String[] categories = DataExtract.extractCategories();
+
+    // Components.
     private CheckComboPanel countrySelect;
-    private SeriesTypeChooser graphCategories;
     private ColoredButton filterBtn = new ColoredButton("Áp dụng");
+    private ColoredButton clearFilterBtn = new ColoredButton("Xóa bộ lọc");
 
     public TimeSeriesFilterOld() {
         super();
-        this.setLayout(new GridBagLayout());
+        this.setLayout(new GridLayout(3 + categories.length, 1));
         this.setBackground(Palette.WHITE);
 
         // Create a Combobox with checkbox by calling the CheckComboPanel class with
         // list of countries obtained from DataExtract class.
-        String[] countries = DataExtract.extractCountry();
         this.countrySelect = new CheckComboPanel(countries);
+        this.add(countrySelect);
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.weightx = 0;
-        gbc.weighty = 0;
-        gbc.fill = GridBagConstraints.BOTH;
-        this.add(countrySelect, gbc);
+        // Create JRadioButton serves as filter for the type of data the graph will
+        // represent.
+        ButtonGroup bg = new ButtonGroup();
+        for (int i = 0; i < categories.length; i++) {
+            CustomRadioButton newOption = new CustomRadioButton(categories[i]);
+            bg.add(newOption);
+            this.add(newOption);
+        }
 
-        String[] categories = DataExtract.extractCategories();
-        graphCategories = new SeriesTypeChooser(categories);
+        clearFilterBtn.addActionListener(this);
+        this.add(clearFilterBtn);
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        this.add(graphCategories, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.weightx = 0;
-        gbc.weighty = 0;
         filterBtn.addActionListener(this);
-        this.add(filterBtn, gbc);
+        this.add(filterBtn);
     }
 
     @Override
