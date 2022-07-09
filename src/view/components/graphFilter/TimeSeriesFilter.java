@@ -1,3 +1,5 @@
+// The panel on the left-hand side of the screen serves as the filter to customize 
+// the time series chart.
 package view.components.graphFilter;
 
 import java.awt.*;
@@ -39,8 +41,6 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
             bg.add(graphOptions.get(i));
             this.add(graphOptions.get(i));
         }
-        // graphCategories = new SeriesTypeChooser(categories);
-        // this.add(graphCategories);
 
         clearFilterBtn.addActionListener(this);
         this.add(clearFilterBtn);
