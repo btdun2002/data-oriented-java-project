@@ -37,6 +37,8 @@ public class CheckComboPanel extends JPanel implements ActionListener {
         this.add(combo, gbc);
     }
 
+    // The updateSelected() method is used to store all selected items as an
+    // ArrayList.
     public void updateSelected() {
         selectedItems = new ArrayList<String>();
         for (int j = 0; j < ids.length; j++)
@@ -44,6 +46,12 @@ public class CheckComboPanel extends JPanel implements ActionListener {
                 selectedItems.add(stores[j].id);
     }
 
+    // The getSelected() method is used to retrieve the ArrayList.
+    public ArrayList<String> getSelected() {
+        return this.selectedItems;
+    }
+
+    // The method reset() is used to set all selected items as unselected.
     public void reset() {
         for (int j = 0; j < ids.length; j++)
             if (stores[j].state)

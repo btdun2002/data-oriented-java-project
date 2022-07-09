@@ -9,13 +9,13 @@ import org.jfree.data.time.*;
 import model.DataExtract;
 
 public class DatasetGenerator extends TimeSeriesCollection {
-    public DatasetGenerator(String countryName) {
+    public DatasetGenerator(String countryName, String category) {
         // Create a TimeSeries instance that store the data of the chart.
-        TimeSeries countryTotalCases = new TimeSeries("Total cases");
+        TimeSeries countryTotalCases = new TimeSeries(category);
 
         // Create two arrays containing dates and data for the graph.
         Day dates[] = DataExtract.extractDay(countryName);
-        double data[] = DataExtract.extractFigures(countryName, "total_cases");
+        double data[] = DataExtract.extractFigures(countryName, category);
 
         // Since the number of elements of two arrays is equals, run a for loop and add
         // these elements as data for the plot.

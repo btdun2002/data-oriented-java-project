@@ -17,12 +17,15 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
     private String[] countries = DataExtract.extractCountry();
     private String[] categories = DataExtract.extractCategories();
 
+    // Data obtained from the component used to plot the graph.
+    private ArrayList<CustomRadioButton> graphOptions = new ArrayList<CustomRadioButton>(categories.length);
+    private String selectedOption = "total_cases";
+
     // Components.
     private CheckComboPanel countrySelect;
     private ColoredButton filterBtn = new ColoredButton("Áp dụng");
     private ColoredButton clearFilterBtn = new ColoredButton("Xóa bộ lọc");
     private ButtonGroup bg = new ButtonGroup();
-    ArrayList<CustomRadioButton> graphOptions = new ArrayList<CustomRadioButton>(categories.length);
 
     public TimeSeriesFilter() {
         super();
@@ -49,6 +52,21 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
         this.add(filterBtn);
     }
 
+    // The getSelectedOption returns the current selected JRadioButton.
+    public String getSelectedOption() {
+        return this.selectedOption;
+    }
+
+    // The getFilterBtn() returns the filter button for outer class to access.
+    public ColoredButton getFilterBtn() {
+        return filterBtn;
+    }
+
+    // The getClearBtn() returns the filter button for outer class to access.
+    public ColoredButton getClearBtn() {
+        return clearFilterBtn;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == filterBtn) {
@@ -56,7 +74,7 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
             System.out.println(countrySelect.selectedItems);
             for (int i = 0; i < categories.length; i++) {
                 if (graphOptions.get(i).isSelected()) {
-                    System.out.println(graphOptions.get(i).getText());
+                    this.selectedOption = graphOptions.get(i).getText();
                 }
             }
         }

@@ -12,7 +12,8 @@ import view.components.graphFilter.*;
 
 public class GraphScreen extends JFrame implements ActionListener {
     private GridBagConstraints gbc = new GridBagConstraints();
-    private GraphGenerator graph = new GraphGenerator("Vietnam");
+    private TimeSeriesFilter filterPanel = new TimeSeriesFilter();
+    private GraphGenerator graph = new GraphGenerator("vietnam", "new_cases");
 
     public GraphScreen(File file) {
         super();
@@ -24,8 +25,6 @@ public class GraphScreen extends JFrame implements ActionListener {
         this.setResizable(false);
 
         // The white JPanel on the left hand-side of the screen.
-        TimeSeriesFilter filterPanel = new TimeSeriesFilter();
-
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
@@ -46,6 +45,11 @@ public class GraphScreen extends JFrame implements ActionListener {
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         this.add(graph, gbc);
+
+        // Add this component's actionListener for the button from TimeSeriesFilter
+        // instance.
+        filterPanel.getFilterBtn().addActionListener(this);
+        filterPanel.getClearBtn().addActionListener(this);
     }
 
     public void initialize() {
@@ -54,5 +58,22 @@ public class GraphScreen extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == filterPanel.getFilterBtn()) {
+            // Remove the old graph.
+            this.remove(graph);
+
+            // Create a new instance of GraphGenerator as a new graph and add
+            // it to the current frame.
+            this.graph = new GraphGenerator("Vietnam", filterPanel.getSelectedOption());
+            this.add(graph, gbc);
+
+            // The old graph now becomes a candidates for garbage collection, so invoke
+            // the garbage collector.
+            System.gc();
+
+            // Call revalidate() and repaint() to update the UI state.
+            this.revalidate();
+            this.repaint();
+        }
     }
 }
