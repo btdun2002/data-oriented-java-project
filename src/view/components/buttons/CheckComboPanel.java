@@ -44,6 +44,12 @@ public class CheckComboPanel extends JPanel implements ActionListener {
                 selectedItems.add(stores[j].id);
     }
 
+    public void reset() {
+        for (int j = 0; j < ids.length; j++)
+            if (stores[j].state)
+                stores[j].state = false;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         JComboBox<?> combo = (JComboBox<?>) e.getSource();
