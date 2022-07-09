@@ -62,6 +62,7 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
         }
 
         if (e.getSource() == clearFilterBtn) {
+            countrySelect.reset();
             bg.clearSelection();
         }
     }
