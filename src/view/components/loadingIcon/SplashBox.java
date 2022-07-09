@@ -1,4 +1,4 @@
-package view.components;
+package view.components.loadingIcon;
 
 import java.awt.*;
 
@@ -54,13 +54,13 @@ public class SplashBox extends Box {
             uPanel.turnBlack();
             sPanel.turnBlack();
             tPanel.turnBlack();
-            delay(100);
+            delay(500);
             hPanel.turnRed();
-            delay(100);
+            delay(500);
             uPanel.turnRed();
-            delay(100);
+            delay(500);
             sPanel.turnRed();
-            delay(100);
+            delay(500);
             tPanel.turnRed();
         }
 

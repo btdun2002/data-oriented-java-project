@@ -9,19 +9,19 @@ import javax.swing.*;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.*;
 
 import java.awt.*;
 
 public class GraphGenerator extends JPanel {
     private GridBagConstraints gbc = new GridBagConstraints();
 
-    public GraphGenerator(String countryName) {
+    public GraphGenerator(String countryName, String category) {
+        super();
         this.setLayout(new GridBagLayout());
 
         // BELOW IS THE DEMO VERSION FROM INTERNET. REPLACE WITH THE REAL LATER.
         // Create dataset
-        TimeSeriesCollection dataset = new DatasetGenerator(countryName);
+        TimeSeriesCollection dataset = new DatasetGenerator(countryName, category);
         // Create chart
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
                 countryName, // Chart

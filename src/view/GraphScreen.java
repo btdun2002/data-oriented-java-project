@@ -3,20 +3,17 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.util.List;
 
 import javax.swing.*;
 
 import controller.*;
-import model.DataExtract;
-import model.DataFrame;
-import tech.tablesaw.columns.*;
 import view.Util.*;
+import view.components.graphFilter.*;
 
 public class GraphScreen extends JFrame implements ActionListener {
     private GridBagConstraints gbc = new GridBagConstraints();
-    private JComboBox<String> countrySelect;
-    private GraphGenerator graph = new GraphGenerator("Vietnam");
+    private TimeSeriesFilter filterPanel = new TimeSeriesFilter();
+    private GraphGenerator graph = new GraphGenerator("vietnam", "new_cases");
 
     public GraphScreen(File file) {
         super();
@@ -27,36 +24,17 @@ public class GraphScreen extends JFrame implements ActionListener {
         this.setLayout(new GridBagLayout());
         this.setResizable(false);
 
-        // Create dropdown box to select country. Get the list of all countries by
-        // calling the DataExtract class.
-        String[] countries = DataExtract.extractCountry();
-        // With the created array, use it as elememnts in JComboBox.
-        countrySelect = new JComboBox<>(countries);
-        countrySelect.addActionListener(this);
-
-        // The container to store the JComboBox
-        JPanel countrySelectPanel = new JPanel();
-        countrySelectPanel.setLayout(new BorderLayout());
-        countrySelectPanel.setPreferredSize(countrySelect.getPreferredSize());
-        countrySelectPanel.add(countrySelect);
-        countrySelectPanel.setBackground(Color.GREEN);
-
         // The white JPanel on the left hand-side of the screen.
-        JPanel whitePanel = new JPanel();
-        whitePanel.setLayout(new GridLayout(20, 1));
-        whitePanel.add(countrySelectPanel);
-        whitePanel.setBackground(Color.WHITE);
-
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         // Note that the side panel should be just enough large to store the JComboBox,
-        // therefore it should occupies no extra space.
+        // therefore it should occupies no extra space horizontally.
         gbc.weightx = 0;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.VERTICAL;
-        this.add(whitePanel, gbc);
+        this.add(filterPanel, gbc);
 
         // The graph on the right-hand side of the screen.
         gbc.gridx = 1;
@@ -67,6 +45,11 @@ public class GraphScreen extends JFrame implements ActionListener {
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         this.add(graph, gbc);
+
+        // Add this component's actionListener for the button from TimeSeriesFilter
+        // instance.
+        filterPanel.getFilterBtn().addActionListener(this);
+        filterPanel.getClearBtn().addActionListener(this);
     }
 
     public void initialize() {
@@ -75,8 +58,22 @@ public class GraphScreen extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == countrySelect) {
-            String selected = countrySelect.getSelectedItem().toString();
+        if (e.getSource() == filterPanel.getFilterBtn()) {
+            // Remove the old graph.
+            this.remove(graph);
+
+            // Create a new instance of GraphGenerator as a new graph and add
+            // it to the current frame.
+            this.graph = new GraphGenerator("Vietnam", filterPanel.getSelectedOption());
+            this.add(graph, gbc);
+
+            // The old graph now becomes a candidates for garbage collection, so invoke
+            // the garbage collector.
+            System.gc();
+
+            // Call revalidate() and repaint() to update the UI state.
+            this.revalidate();
+            this.repaint();
         }
     }
 }

@@ -1,5 +1,5 @@
 // This class inherited the JButton class to become a custom button on the sidebar.
-package view.components;
+package view.components.buttons;
 
 import java.awt.*;
 import java.awt.event.*;
