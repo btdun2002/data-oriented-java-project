@@ -10,6 +10,8 @@ import view.Util.StaticTexts;
 public class FileChoosingScreen extends JFileChooser {
     File choosenFile = null;
     int response = this.showOpenDialog(null);
+    private boolean approved;
+    private boolean canceled;
 
     public FileChoosingScreen() {
         // Set the current directory as one that will be opened by calling super().
@@ -23,6 +25,12 @@ public class FileChoosingScreen extends JFileChooser {
 
         // The if-else statement to validate that the user choosed a file in the
         // directory.
+        if (response == JFileChooser.APPROVE_OPTION) {
+            approved = true;
+        } else if (response == JFileChooser.CANCEL_OPTION) {
+            canceled = true;
+        }
+
         if (this.response == JFileChooser.APPROVE_OPTION && this.getSelectedFile() != null) {
             File file = new File(this.getSelectedFile().getAbsolutePath());
             this.choosenFile = file;
@@ -39,5 +47,13 @@ public class FileChoosingScreen extends JFileChooser {
     // operations in the future.
     public File getFile() {
         return this.choosenFile;
+    }
+
+    public boolean getCanceled() {
+        return canceled;
+    }
+
+    public boolean getApproved() {
+        return approved;
     }
 }
