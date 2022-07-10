@@ -11,9 +11,13 @@ import view.Util.*;
 import view.components.graphFilter.*;
 
 public class GraphScreen extends JFrame implements ActionListener {
+    // Default data value.
+    private String[] defaultCountry = { "Vietnam" };
+    private String defaultCategory = "new_cases";
+    // Components of the Frame.
     private GridBagConstraints gbc = new GridBagConstraints();
     private TimeSeriesFilter filterPanel = new TimeSeriesFilter();
-    private GraphGenerator graph = new GraphGenerator("vietnam", "new_cases");
+    private GraphGenerator graph = new GraphGenerator(defaultCountry, defaultCategory);
 
     public GraphScreen(File file) {
         super();
@@ -67,7 +71,7 @@ public class GraphScreen extends JFrame implements ActionListener {
 
             // Create a new instance of GraphGenerator as a new graph and add
             // it to the current frame.
-            this.graph = new GraphGenerator("Vietnam", filterPanel.getSelectedOption());
+            this.graph = new GraphGenerator(filterPanel.getSelectedCountries(), filterPanel.getSelectedCategory());
             this.add(graph, gbc);
 
             // The old graph now becomes a candidates for garbage collection, so invoke

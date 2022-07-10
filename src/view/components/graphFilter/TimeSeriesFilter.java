@@ -52,8 +52,16 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
         this.add(filterBtn);
     }
 
+    // The getSelectedCountries returns the array of countries selected.
+    public String[] getSelectedCountries() {
+        ArrayList<String> tempList = countrySelect.selectedItems;
+        String[] countries = new String[tempList.size()];
+        tempList.toArray(countries);
+        return countries;
+    }
+
     // The getSelectedOption returns the current selected JRadioButton.
-    public String getSelectedOption() {
+    public String getSelectedCategory() {
         return this.selectedOption;
     }
 

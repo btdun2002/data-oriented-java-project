@@ -15,7 +15,7 @@ import java.awt.*;
 public class GraphGenerator extends JPanel {
     private GridBagConstraints gbc = new GridBagConstraints();
 
-    public GraphGenerator(String countryName, String category) {
+    public GraphGenerator(String[] countryName, String category) {
         super();
         this.setLayout(new GridBagLayout());
 
@@ -24,7 +24,7 @@ public class GraphGenerator extends JPanel {
         TimeSeriesCollection dataset = new DatasetGenerator(countryName, category);
         // Create chart
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                countryName, // Chart
+                category, // Chart
                 "Date", // X-Axis Label
                 "Number", // Y-Axis Label
                 dataset, true, true, false);

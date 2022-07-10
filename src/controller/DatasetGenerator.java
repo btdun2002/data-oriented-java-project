@@ -9,20 +9,29 @@ import org.jfree.data.time.*;
 import model.DataExtract;
 
 public class DatasetGenerator extends TimeSeriesCollection {
-    public DatasetGenerator(String countryName, String category) {
-        // Create a TimeSeries instance that store the data of the chart.
-        TimeSeries countryTotalCases = new TimeSeries(category);
+    public DatasetGenerator(String[] countryNames, String category) {
+        // Get the number of series, which is the number of country the graph should
+        // plot.
+        int numberOfCountries = countryNames.length;
 
-        // Create two arrays containing dates and data for the graph.
-        Day dates[] = DataExtract.extractDay(countryName);
-        double data[] = DataExtract.extractFigures(countryName, category);
+        // With each country passed in as an array, create a TimeSerie and add data for
+        // it.
+        for (int i = 0; i < numberOfCountries; i++) {
 
-        // Since the number of elements of two arrays is equals, run a for loop and add
-        // these elements as data for the plot.
-        for (int i = 0; i < dates.length; i++) {
-            countryTotalCases.add(dates[i], data[i]);
+            // Create a TimeSeries instance that store the data of the chart.
+            TimeSeries countryTotalCases = new TimeSeries(countryNames[i]);
+
+            // Create two arrays containing dates and data for the graph.
+            Day dates[] = DataExtract.extractDay(countryNames[i]);
+            double data[] = DataExtract.extractFigures(countryNames[i], category);
+
+            // Since the number of elements of two arrays is equals, run a for loop and add
+            // these elements as data for the plot.
+            for (int j = 0; j < dates.length; j++) {
+                countryTotalCases.add(dates[j], data[j]);
+            }
+
+            this.addSeries(countryTotalCases);
         }
-
-        this.addSeries(countryTotalCases);
     }
 }

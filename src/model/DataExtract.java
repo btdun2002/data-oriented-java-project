@@ -71,6 +71,7 @@ public class DataExtract {
         String[] columnNames = new String[tempList.size()];
         tempList.toArray(columnNames);
 
+        // Get only last 9 items in the array.
         String[] categories = Arrays.copyOfRange(columnNames, 4, 13);
         return categories;
     }
