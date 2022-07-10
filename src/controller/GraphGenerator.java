@@ -7,10 +7,9 @@ package controller;
 import javax.swing.*;
 
 import org.jfree.chart.*;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.*;
 import org.jfree.data.time.TimeSeriesCollection;
+
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
 import java.awt.*;
@@ -42,16 +41,12 @@ public class GraphGenerator extends JPanel {
         // Horizontal grid color
         plot.setRangeGridlinePaint(Palette.WHITE);
 
-        // // Change y-axis interval.
-        // NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
-        // yAxis.setTickUnit(new NumberTickUnit(100000));
-
         // Renders line graph
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-        BasicStroke renderersStroke = new BasicStroke(1f);
+        BasicStroke renderersStroke = new BasicStroke(2f);
         for (int i = 0; i < 9; i++) {
             // Changes line color
-            renderer.setSeriesPaint(i, Palette.NINE_LINE_COLOR[i]);
+            renderer.setSeriesPaint(i, Palette.TIMES_SERIES_LINES[i]);
             // Hide the square dots
             renderer.setSeriesShapesVisible(i, false);
             // Strokes line
@@ -60,7 +55,6 @@ public class GraphGenerator extends JPanel {
         plot.setRenderer(renderer);
 
         ChartPanel panel = new ChartPanel(chart);
-        this.setBackground(Color.GREEN);
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1;
         gbc.weighty = 1;

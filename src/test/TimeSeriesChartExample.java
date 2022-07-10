@@ -38,7 +38,6 @@ public class TimeSeriesChartExample extends JPanel {
         plot.setBackgroundPaint(new Color(255, 228, 196));
 
         ChartPanel panel = new ChartPanel(chart);
-        this.setBackground(Color.GREEN);
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1;
         gbc.weighty = 1;
