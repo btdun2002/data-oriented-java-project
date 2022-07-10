@@ -7,6 +7,8 @@ package controller;
 import javax.swing.*;
 
 import org.jfree.chart.*;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.*;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -32,13 +34,17 @@ public class GraphGenerator extends JPanel {
                 "Number", // Y-Axis Label
                 dataset, true, true, false);
 
-        // Changes background color
+        // Change background color
         XYPlot plot = (XYPlot) chart.getPlot();
-        plot.setBackgroundPaint(Palette.LIGHT_GRAY);
+        plot.setBackgroundPaint(Palette.WHITE);
         // Vertical grid color
         plot.setDomainGridlinePaint(Palette.WHITE);
         // Horizontal grid color
         plot.setRangeGridlinePaint(Palette.WHITE);
+
+        // // Change y-axis interval.
+        // NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
+        // yAxis.setTickUnit(new NumberTickUnit(100000));
 
         // Renders line graph
         XYLineAndShapeRenderer r1 = new XYLineAndShapeRenderer();
