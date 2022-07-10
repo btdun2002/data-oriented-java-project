@@ -7,15 +7,15 @@ public class Palette {
     public static Color HUST_RED = new Color(205, 22, 39);
     public static Color WHITE = new Color(255, 255, 255);
     public static Color BLACK = new Color(0, 0, 0);
-    public static Color LIGHT_GRAY = new Color(229, 229, 229);
-    public static Color[] NINE_LINE_COLOR = { Color.decode("#9e0142"),
-            Color.decode("#d53e4f"),
-            Color.decode("#f46d43"),
-            Color.decode("#fdae61"),
-            Color.decode("#fee08b"),
-            Color.decode("#abdda4"),
-            Color.decode("#66c2a5"),
-            Color.decode("#3288bd"),
-            Color.decode("#5e4fa2") };
+    public static Color LIGHT_GRAY = new Color(239, 239, 239);
+    public static Color[] NINE_LINE_COLOR = { Color.decode("#c83c46"),
+            Color.decode("#f0643c"),
+            Color.decode("#e69646"),
+            Color.decode("#d2b45a"),
+            Color.decode("#b4c86e"),
+            Color.decode("#aadca0"),
+            Color.decode("#64bea0"),
+            Color.decode("#3282b4"),
+            Color.decode("#5a46a0") };
 
 }

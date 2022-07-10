@@ -41,14 +41,17 @@ public class GraphGenerator extends JPanel {
         plot.setRangeGridlinePaint(Palette.WHITE);
 
         // Renders line graph
-        XYLineAndShapeRenderer r1 = new XYLineAndShapeRenderer();
-        // Changes line color
-        r1.setSeriesPaint(0, Palette.NINE_LINE_COLOR[8]);
-        // Hide the square dots
-        r1.setSeriesShapesVisible(0, false);
-        // Strokes line
-        r1.setSeriesStroke(0, new BasicStroke(1.5f));
-        plot.setRenderer(0, r1);
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+        BasicStroke renderersStroke = new BasicStroke(1f);
+        for (int i = 0; i < 9; i++) {
+            // Changes line color
+            renderer.setSeriesPaint(i, Palette.NINE_LINE_COLOR[i]);
+            // Hide the square dots
+            renderer.setSeriesShapesVisible(i, false);
+            // Strokes line
+            renderer.setSeriesStroke(i, renderersStroke);
+        }
+        plot.setRenderer(renderer);
 
         ChartPanel panel = new ChartPanel(chart);
         this.setBackground(Color.GREEN);
