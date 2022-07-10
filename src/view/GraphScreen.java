@@ -62,6 +62,9 @@ public class GraphScreen extends JFrame implements ActionListener {
             // Remove the old graph.
             this.remove(graph);
 
+            // FIXME: Temporary solution: Call the updateFIlter() method to get new filter.
+            filterPanel.updateFilter();
+
             // Create a new instance of GraphGenerator as a new graph and add
             // it to the current frame.
             this.graph = new GraphGenerator("Vietnam", filterPanel.getSelectedOption());

@@ -19,7 +19,7 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
 
     // Data obtained from the component used to plot the graph.
     private ArrayList<CustomRadioButton> graphOptions = new ArrayList<CustomRadioButton>(categories.length);
-    private String selectedOption = "total_cases";
+    private String selectedOption = "";
 
     // Components.
     private CheckComboPanel countrySelect;
@@ -67,16 +67,35 @@ public class TimeSeriesFilter extends JPanel implements ActionListener {
         return clearFilterBtn;
     }
 
+    // The updateFilter() method reads input from filter's buttons and update the
+    // filter.
+    public void updateFilter() {
+        countrySelect.updateSelected();
+        for (int i = 0; i < categories.length; i++) {
+            if (graphOptions.get(i).isSelected()) {
+                this.selectedOption = graphOptions.get(i).getText();
+            }
+        }
+    }
+
+    // FIXME: Since this method is called after the actionPerformed in the
+    // graphScreen,
+    // so the graph cannot be updated with the new filter. The current temporary
+    // solution
+    // is to create a method that will be passed in before the creation of new graph
+    // (see
+    // updateFilter() method). However, the same should be achieved by using
+    // multi-thread or
+    // asynchronous call. Fix it later.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == filterBtn) {
-            countrySelect.updateSelected();
-            System.out.println(countrySelect.selectedItems);
-            for (int i = 0; i < categories.length; i++) {
-                if (graphOptions.get(i).isSelected()) {
-                    this.selectedOption = graphOptions.get(i).getText();
-                }
-            }
+            // countrySelect.updateSelected();
+            // for (int i = 0; i < categories.length; i++) {
+            // if (graphOptions.get(i).isSelected()) {
+            // this.selectedOption = graphOptions.get(i).getText();
+            // }
+            // }
         }
 
         if (e.getSource() == clearFilterBtn) {
