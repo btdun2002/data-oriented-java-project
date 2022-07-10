@@ -104,10 +104,14 @@ public class Root extends JFrame implements ActionListener {
         // When press the choosing file button, call FileChooser instance.
         if (e.getSource() == fileChoosingBtn) {
             toSplashTask tsthread = new toSplashTask();
+            toRootTask trthread = new toRootTask();
+
             tsthread.start();
 
             this.fc = new FileChoosingScreen();
 
+            if (this.fc.getApproved() || this.fc.getCanceled())
+                trthread.start();
             // With the file got from FileChooser, get the path of the file.
             String filePath = fc.getFile().toString();
 
@@ -120,8 +124,6 @@ public class Root extends JFrame implements ActionListener {
             // DataFrame.java.
             DataFrame.df = Table.read().csv(filePath);
 
-            toRootTask trthread = new toRootTask();
-            trthread.start();
         }
         // With the data button, take the file and perform read and analyze operations
         // with that.

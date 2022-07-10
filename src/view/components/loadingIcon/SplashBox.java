@@ -54,13 +54,13 @@ public class SplashBox extends Box {
             uPanel.turnBlack();
             sPanel.turnBlack();
             tPanel.turnBlack();
-            delay(500);
+            delay(400);
             hPanel.turnRed();
-            delay(500);
+            delay(400);
             uPanel.turnRed();
-            delay(500);
+            delay(400);
             sPanel.turnRed();
-            delay(500);
+            delay(400);
             tPanel.turnRed();
         }
 
