@@ -5,7 +5,5 @@ bin/controller/
 bin/model/
 bin/test/
 bin/view/
-bin/view/components/
-bin/view/Util/
 .vscode/
 assets/data/xu-ly-data.ipynb

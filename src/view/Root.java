@@ -110,7 +110,8 @@ public class Root extends JFrame implements ActionListener {
 
             this.fc = new FileChoosingScreen();
 
-            trthread.start();
+            if (this.fc.getApproved() || this.fc.getCanceled())
+                trthread.start();
             // With the file got from FileChooser, get the path of the file.
             String filePath = fc.getFile().toString();
 
